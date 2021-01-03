@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "272313248272",
+    "project_id": "pizzato-386f4",
+    "storage_bucket": "pizzato-386f4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:272313248272:android:67e47b475f57857834f895",
+        "android_client_info": {
+          "package_name": "com.iviberberi.pizzato"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "272313248272-eh5m0k65blb80rgclecc9bo4hfe77h1j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCBStJgsHEOiqFTAONYBe6VWFsHe8LnyyE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "272313248272-eh5m0k65blb80rgclecc9bo4hfe77h1j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

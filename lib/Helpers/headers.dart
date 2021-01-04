@@ -120,7 +120,7 @@ class Headers extends ChangeNotifier {
               width: 100,
               child: Center(
                 child: Text(
-                  'All Food',
+                  'Pasta',
                   style: TextStyle(
                     color: Colors.black,
                     fontWeight: FontWeight.bold,

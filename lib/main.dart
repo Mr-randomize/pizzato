@@ -27,6 +27,7 @@ class MyApp extends StatelessWidget {
         title: 'Pizzato',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
+          fontFamily: 'Figno',
           primarySwatch: Colors.red,
           primaryColor: Colors.redAccent,
           visualDensity: VisualDensity.adaptivePlatformDensity,

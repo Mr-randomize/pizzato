@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:pizzato/Services/maps.dart';
 
 class Headers extends ChangeNotifier {
   Widget appBar(BuildContext context) {
@@ -11,13 +12,20 @@ class Headers extends ChangeNotifier {
           IconButton(icon: Icon(FontAwesomeIcons.userAlt), onPressed: () {}),
           Row(
             children: [
-              Icon(FontAwesomeIcons.locationArrow, color: Colors.grey.shade600),
-              Text(
-                'New Police Area',
-                style: TextStyle(
-                    color: Colors.grey.shade600,
-                    fontSize: 12.0,
-                    fontWeight: FontWeight.w300),
+              Icon(
+                FontAwesomeIcons.locationArrow,
+                color: Colors.grey.shade600,
+                size: 16.0,
+              ),
+              Container(
+                constraints: BoxConstraints(maxWidth: 250.0),
+                child: Text(
+                  finalAddress,
+                  style: TextStyle(
+                      color: Colors.grey.shade600,
+                      fontSize: 12.0,
+                      fontWeight: FontWeight.w300),
+                ),
               ),
             ],
           ),

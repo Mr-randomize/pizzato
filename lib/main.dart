@@ -4,6 +4,7 @@ import 'package:pizzato/Helpers/footer.dart';
 import 'package:pizzato/Helpers/headers.dart';
 import 'package:pizzato/Helpers/middle.dart';
 import 'package:pizzato/Services/manage_data.dart';
+import 'package:pizzato/Services/maps.dart';
 import 'package:pizzato/Views/splash_screen.dart';
 import 'package:provider/provider.dart';
 
@@ -22,6 +23,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (ctx) => MiddleHelpers()),
         ChangeNotifierProvider(create: (ctx) => ManageData()),
         ChangeNotifierProvider(create: (ctx) => Footers()),
+        ChangeNotifierProvider(create: (ctx) => GenerateMaps()),
       ],
       child: MaterialApp(
         title: 'Pizzato',

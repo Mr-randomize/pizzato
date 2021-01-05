@@ -108,6 +108,7 @@ class Login extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: TextField(
+                      obscureText: true,
                       decoration: InputDecoration(
                           hintText: 'Enter Password',
                           hintStyle: TextStyle(

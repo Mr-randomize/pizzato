@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:pizzato/Views/home_screen.dart';
+import 'package:pizzato/Views/login.dart';
 
 class SplashCreen extends StatefulWidget {
   @override
@@ -19,7 +19,7 @@ class _SplashCreenState extends State<SplashCreen> {
       () => Navigator.pushReplacement(
         context,
         PageTransition(
-            child: HomeScreen(), type: PageTransitionType.leftToRightWithFade),
+            child: Login(), type: PageTransitionType.leftToRightWithFade),
       ),
     );
   }

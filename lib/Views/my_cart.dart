@@ -1,9 +1,13 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
-
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:lottie/lottie.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:pizzato/Miniviews/map_view.dart';
+import 'package:pizzato/Services/maps.dart';
 import 'package:pizzato/Views/home_screen.dart';
+import 'package:provider/provider.dart';
 
 class MyCart extends StatefulWidget {
   @override
@@ -88,6 +92,95 @@ class _MyCartState extends State<MyCart> {
   Widget cartData() {
     return SizedBox(
       height: 300.0,
+      child: StreamBuilder<QuerySnapshot>(
+          stream: FirebaseFirestore.instance.collection('myOrders').snapshots(),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return Center(
+                child: Lottie.asset('animation.delivery.json'),
+              );
+            } else {
+              return ListView(
+                children:
+                    snapshot.data.docs.map((DocumentSnapshot documentSnapshot) {
+                  return Container(
+                    decoration: BoxDecoration(
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey.shade500,
+                            blurRadius: 5.0,
+                            spreadRadius: 5,
+                          )
+                        ],
+                        borderRadius: BorderRadius.circular(25.0),
+                        color: Colors.white),
+                    height: 200.0,
+                    width: 400.0,
+                    child: Row(
+                      children: [
+                        SizedBox(
+                          child: Image.network(
+                            documentSnapshot.data()['image'],
+                            width: 200.0,
+                          ),
+                        ),
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Text(
+                              documentSnapshot.data()['name'],
+                              style: TextStyle(
+                                color: Colors.black87,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 24.0,
+                              ),
+                            ),
+                            Text(
+                              'Price: ${documentSnapshot.data()['price'].toString()}',
+                              style: TextStyle(
+                                color: Colors.black87,
+                                fontSize: 21.0,
+                              ),
+                            ),
+                            Text(
+                              'Onion: ${documentSnapshot.data()['onion'].toString()}',
+                              style: TextStyle(
+                                color: Colors.black87,
+                                fontSize: 18.0,
+                              ),
+                            ),
+                            Text(
+                              'Bacon: ${documentSnapshot.data()['bacon'].toString()}',
+                              style: TextStyle(
+                                color: Colors.black87,
+                                fontSize: 18.0,
+                              ),
+                            ),
+                            Text(
+                              'Cheese: ${documentSnapshot.data()['cheese'].toString()}',
+                              style: TextStyle(
+                                color: Colors.black87,
+                                fontSize: 18.0,
+                              ),
+                            ),
+                            CircleAvatar(
+                              child: Text(
+                                documentSnapshot.data()['size'],
+                                style: TextStyle(
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
+                  );
+                }).toList(),
+              );
+            }
+          }),
     );
   }
 
@@ -120,12 +213,23 @@ class _MyCartState extends State<MyCart> {
                       padding: const EdgeInsets.only(left: 8.0),
                       child: Container(
                         constraints: BoxConstraints(maxWidth: 250.0),
-                        child: Text("New police area"),
+                        child: Text(
+                          Provider.of<GenerateMaps>(context, listen: true)
+                              .getMainAddress,
+                        ),
                       ),
                     ),
                   ],
                 ),
-                IconButton(icon: Icon(Icons.edit), onPressed: () {}),
+                IconButton(
+                    icon: Icon(Icons.edit),
+                    onPressed: () {
+                      Navigator.pushReplacement(
+                          context,
+                          PageTransition(
+                              child: Maps(),
+                              type: PageTransitionType.bottomToTop));
+                    }),
               ],
             ),
           ),

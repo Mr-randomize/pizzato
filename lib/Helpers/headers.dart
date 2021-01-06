@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:pizzato/Services/maps.dart';
+import 'package:provider/provider.dart';
 
 class Headers extends ChangeNotifier {
   Widget appBar(BuildContext context) {
@@ -20,7 +21,8 @@ class Headers extends ChangeNotifier {
               Container(
                 constraints: BoxConstraints(maxWidth: 250.0),
                 child: Text(
-                  finalAddress,
+                  Provider.of<GenerateMaps>(context, listen: true)
+                      .getFinalAddress,
                   style: TextStyle(
                       color: Colors.grey.shade600,
                       fontSize: 12.0,

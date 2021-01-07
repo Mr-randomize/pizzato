@@ -3,25 +3,38 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:pizzato/Views/home_screen.dart';
 import 'package:pizzato/Views/login.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class SplashCreen extends StatefulWidget {
+String userUid;
+
+class SplashScreen extends StatefulWidget {
   @override
-  _SplashCreenState createState() => _SplashCreenState();
+  _SplashScreenState createState() => _SplashScreenState();
 }
 
-class _SplashCreenState extends State<SplashCreen> {
+class _SplashScreenState extends State<SplashScreen> {
+  Future getUid() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    userUid = prefs.getString('uid');
+    print(userUid);
+  }
+
   @override
   void initState() {
     super.initState();
-    Timer(
-      Duration(seconds: 2),
-      () => Navigator.pushReplacement(
-        context,
-        PageTransition(
-            child: Login(), type: PageTransitionType.leftToRightWithFade),
-      ),
-    );
+    getUid().whenComplete(() {
+      Timer(
+        Duration(seconds: 2),
+        () => Navigator.pushReplacement(
+          context,
+          PageTransition(
+              child: userUid == null ? Login() : HomeScreen(),
+              type: PageTransitionType.leftToRightWithFade),
+        ),
+      );
+    });
   }
 
   @override

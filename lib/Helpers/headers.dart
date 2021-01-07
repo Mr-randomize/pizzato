@@ -1,7 +1,11 @@
+import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:pizzato/Services/maps.dart';
+import 'package:pizzato/Views/login.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Headers extends ChangeNotifier {
   Widget appBar(BuildContext context) {
@@ -10,7 +14,17 @@ class Headers extends ChangeNotifier {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          IconButton(icon: Icon(FontAwesomeIcons.userAlt), onPressed: () {}),
+          IconButton(
+              icon: Icon(EvaIcons.logOut),
+              onPressed: () async {
+                SharedPreferences prefs = await SharedPreferences.getInstance();
+                prefs.remove('uid');
+                Navigator.pushReplacement(
+                  context,
+                  PageTransition(
+                      child: Login(), type: PageTransitionType.leftToRight),
+                );
+              }),
           Row(
             children: [
               Icon(

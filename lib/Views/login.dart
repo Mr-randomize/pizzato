@@ -131,13 +131,31 @@ class Login extends StatelessWidget {
                                 .loginIntoAccount(emailController.text,
                                     passwordController.text)
                                 .whenComplete(() {
-                              Navigator.pushReplacement(
-                                  context,
-                                  PageTransition(
-                                    child: HomeScreen(),
-                                    type: PageTransitionType.leftToRight,
-                                  ));
+                              if (Provider.of<Authentication>(context,
+                                          listen: false)
+                                      .getErrorMessage !=
+                                  '') {
+                                Navigator.pushReplacement(
+                                    context,
+                                    PageTransition(
+                                      child: Login(),
+                                      type: PageTransitionType.leftToRight,
+                                    ));
+                              } else {
+                                Navigator.pushReplacement(
+                                    context,
+                                    PageTransition(
+                                      child: HomeScreen(),
+                                      type: PageTransitionType.leftToRight,
+                                    ));
+                              }
                             })),
+                  ),
+                  Text(
+                    Provider.of<Authentication>(context, listen: true)
+                        .getErrorMessage,
+                    style: TextStyle(
+                        color: Colors.white, fontWeight: FontWeight.bold),
                   )
                 ],
               ),
@@ -197,13 +215,31 @@ class Login extends StatelessWidget {
                                 .createNewAccount(emailController.text,
                                     passwordController.text)
                                 .whenComplete(() {
-                              Navigator.pushReplacement(
-                                  context,
-                                  PageTransition(
-                                    child: HomeScreen(),
-                                    type: PageTransitionType.leftToRight,
-                                  ));
+                              if (Provider.of<Authentication>(context,
+                                          listen: false)
+                                      .getErrorMessage !=
+                                  '') {
+                                Navigator.pushReplacement(
+                                    context,
+                                    PageTransition(
+                                      child: Login(),
+                                      type: PageTransitionType.leftToRight,
+                                    ));
+                              } else {
+                                Navigator.pushReplacement(
+                                    context,
+                                    PageTransition(
+                                      child: HomeScreen(),
+                                      type: PageTransitionType.leftToRight,
+                                    ));
+                              }
                             })),
+                  ),
+                  Text(
+                    Provider.of<Authentication>(context, listen: true)
+                        .getErrorMessage,
+                    style: TextStyle(
+                        color: Colors.white, fontWeight: FontWeight.bold),
                   )
                 ],
               ),

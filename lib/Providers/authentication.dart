@@ -14,6 +14,9 @@ class Authentication with ChangeNotifier {
 
   Future loginIntoAccount(String email, String password) async {
     try {
+      if (errorMessage.toString().isNotEmpty) {
+        errorMessage = '';
+      }
       SharedPreferences prefs = await SharedPreferences.getInstance();
       UserCredential userCredential = await firebaseAuth
           .signInWithEmailAndPassword(email: email, password: password);

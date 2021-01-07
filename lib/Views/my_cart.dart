@@ -5,6 +5,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:lottie/lottie.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:pizzato/Miniviews/map_view.dart';
+import 'package:pizzato/Providers/calculations.dart';
+import 'package:pizzato/Services/manage_data.dart';
 import 'package:pizzato/Services/maps.dart';
 import 'package:pizzato/Views/home_screen.dart';
 import 'package:provider/provider.dart';
@@ -61,7 +63,11 @@ class _MyCartState extends State<MyCart> {
                 FontAwesomeIcons.trash,
                 color: Colors.red,
               ),
-              onPressed: () {}),
+              onPressed: () async {
+                Provider.of<ManageData>(context, listen: false)
+                    .deleteData(context);
+                Provider.of<Calculations>(context, listen: false).cartData = 0;
+              }),
         ],
       ),
     );

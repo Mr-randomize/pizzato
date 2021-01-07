@@ -24,6 +24,7 @@ class GenerateMaps extends ChangeNotifier {
         await geoCo.Geocoder.local.findAddressesFromCoordinates(cords);
     String mainAddress = address.first.addressLine;
     finalAddress = mainAddress;
+    notifyListeners();
   }
 
   getMarkers(double lat, double lng) {
@@ -49,10 +50,10 @@ class GenerateMaps extends ChangeNotifier {
         countryName = address.first.countryName;
         mainAddress = address.first.addressLine;
         notifyListeners();
-        markers.isEmpty
+        markers == null
             ? getMarkers(loc.latitude, loc.longitude)
             : markers.clear();
-        print(loc);
+        print(mainAddress);
       },
       markers: Set<Marker>.of(markers.values),
       initialCameraPosition:

@@ -26,15 +26,34 @@ class _DetailedScreenState extends State<DetailedScreen> {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: floatingActionButton(),
       backgroundColor: Colors.white,
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          appBar(context),
-          pizzaImage(),
-          middleData(),
-          footerDetails(),
-        ],
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              stops: [
+                0.2,
+                0.54,
+                0.6,
+                0.9,
+              ],
+              colors: [
+                Color(0xFF200B4B),
+                Color(0xFF201F22),
+                Color(0xFF1A1031),
+                Color(0xFF19181F),
+              ]),
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            appBar(context),
+            pizzaImage(),
+            middleData(),
+            footerDetails(),
+          ],
+        ),
       ),
     );
   }
@@ -60,7 +79,7 @@ class _DetailedScreenState extends State<DetailedScreen> {
               }),
           IconButton(
               icon: Icon(
-                FontAwesomeIcons.trash,
+                FontAwesomeIcons.trashAlt,
                 color: Colors.red,
               ),
               onPressed: () {
@@ -114,9 +133,9 @@ class _DetailedScreenState extends State<DetailedScreen> {
               child: Text(
                 widget.queryDocumentSnapshot['name'],
                 style: TextStyle(
-                  fontSize: 36.0,
-                  color: Colors.grey.shade500,
-                  fontWeight: FontWeight.w400,
+                  fontSize: 34.0,
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
             ),
@@ -154,12 +173,12 @@ class _DetailedScreenState extends State<DetailedScreen> {
               height: 300.0,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(40.0),
-                  color: Colors.white,
+                  color: Colors.white.withOpacity(0.8),
                   boxShadow: [
                     BoxShadow(
                       color: Colors.grey.shade500,
-                      blurRadius: 5,
-                      spreadRadius: 3,
+                      blurRadius: 2,
+                      spreadRadius: 2,
                     )
                   ]),
               width: 400.0,
@@ -317,9 +336,9 @@ class _DetailedScreenState extends State<DetailedScreen> {
                 child: Container(
                   decoration: BoxDecoration(
                     color: Provider.of<Calculations>(context).smallTapped
-                        ? Colors.red
+                        ? Colors.lightBlue
                         : Colors.white,
-                    border: Border.all(color: Colors.red),
+                    border: Border.all(color: Colors.lightBlue),
                     borderRadius: BorderRadius.circular(10.0),
                   ),
                   child: Padding(
@@ -339,9 +358,9 @@ class _DetailedScreenState extends State<DetailedScreen> {
                 child: Container(
                   decoration: BoxDecoration(
                     color: Provider.of<Calculations>(context).mediumTapped
-                        ? Colors.red
+                        ? Colors.lightBlue
                         : Colors.white,
-                    border: Border.all(color: Colors.red),
+                    border: Border.all(color: Colors.lightBlue),
                     borderRadius: BorderRadius.circular(10.0),
                   ),
                   child: Padding(
@@ -361,9 +380,9 @@ class _DetailedScreenState extends State<DetailedScreen> {
                   decoration: BoxDecoration(
                     color: Provider.of<Calculations>(context, listen: true)
                             .largeTapped
-                        ? Colors.red
+                        ? Colors.lightBlue
                         : Colors.white,
-                    border: Border.all(color: Colors.red),
+                    border: Border.all(color: Colors.lightBlue),
                     borderRadius: BorderRadius.circular(10.0),
                   ),
                   child: Padding(
@@ -406,7 +425,7 @@ class _DetailedScreenState extends State<DetailedScreen> {
             width: 250.0,
             height: 50.0,
             decoration: BoxDecoration(
-                color: Colors.red.shade500,
+                color: Colors.lightBlue,
                 borderRadius: BorderRadius.circular(50.0)),
             child: Center(
               child: Text(
@@ -422,6 +441,7 @@ class _DetailedScreenState extends State<DetailedScreen> {
         Stack(
           children: [
             FloatingActionButton(
+              backgroundColor: Colors.lightBlue,
               onPressed: () {
                 Navigator.pushReplacement(
                     context,
@@ -436,8 +456,15 @@ class _DetailedScreenState extends State<DetailedScreen> {
             Positioned(
               left: 35,
               child: CircleAvatar(
+                backgroundColor: Colors.white,
                 radius: 10,
-                child: Text('$totalItems'),
+                child: Text(
+                  Provider.of<Calculations>(context, listen: false)
+                      .getCartData
+                      .toString(),
+                  style: TextStyle(
+                      color: Colors.black, fontWeight: FontWeight.bold),
+                ),
               ),
             )
           ],

@@ -6,6 +6,7 @@ import 'package:pizzato/Views/my_cart.dart';
 class Footers extends ChangeNotifier {
   Widget floatingActionButton(BuildContext context) {
     return FloatingActionButton(
+      backgroundColor: Colors.lightGreenAccent,
       onPressed: () {
         Navigator.pushReplacement(
           context,
@@ -13,7 +14,10 @@ class Footers extends ChangeNotifier {
               child: MyCart(), type: PageTransitionType.rightToLeftWithFade),
         );
       },
-      child: Icon(EvaIcons.shoppingBag),
+      child: Icon(
+        EvaIcons.shoppingBag,
+        color: Colors.black,
+      ),
     );
   }
 }

@@ -5,11 +5,11 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class GenerateMaps extends ChangeNotifier {
   Position position;
-
   Position get getPosition => position;
-  String finalAddress = 'Searching address...';
 
+  String finalAddress = 'Searching address...';
   String get getFinalAddress => finalAddress;
+
   GoogleMapController googleMapController;
   Map<MarkerId, Marker> markers = <MarkerId, Marker>{};
   String countryName, mainAddress = 'Mock address';
@@ -24,6 +24,7 @@ class GenerateMaps extends ChangeNotifier {
         await geoCo.Geocoder.local.findAddressesFromCoordinates(cords);
     String mainAddress = address.first.addressLine;
     finalAddress = mainAddress;
+    print(getFinalAddress);
     notifyListeners();
   }
 

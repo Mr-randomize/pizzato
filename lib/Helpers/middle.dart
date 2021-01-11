@@ -18,12 +18,12 @@ class MiddleHelpers extends ChangeNotifier {
             style: TextStyle(
                 shadows: [
                   BoxShadow(
-                    color: Colors.black,
+                    color: Colors.white,
                     blurRadius: 1,
                   )
                 ],
                 fontWeight: FontWeight.w600,
-                color: Colors.black,
+                color: Colors.white,
                 fontSize: 36.0),
             children: <TextSpan>[
               TextSpan(
@@ -78,12 +78,12 @@ class MiddleHelpers extends ChangeNotifier {
                         decoration: BoxDecoration(
                             borderRadius:
                                 BorderRadius.all(Radius.circular(40.0)),
-                            color: Colors.white,
+                            color: Colors.white.withOpacity(0.8),
                             boxShadow: [
                               BoxShadow(
-                                color: Colors.grey.shade500,
-                                blurRadius: 5,
-                                spreadRadius: 3,
+                                color: Colors.lightBlueAccent,
+                                blurRadius: 2,
+                                spreadRadius: 2,
                               )
                             ]),
                         child: Padding(
@@ -116,8 +116,8 @@ class MiddleHelpers extends ChangeNotifier {
                                 child: Text(
                                   snapshot.data[index].data()['name'],
                                   style: TextStyle(
-                                      fontSize: 18.0,
-                                      fontWeight: FontWeight.w200,
+                                      fontSize: 22.0,
+                                      fontWeight: FontWeight.bold,
                                       color: Colors.black),
                                 ),
                               ),
@@ -195,7 +195,7 @@ class MiddleHelpers extends ChangeNotifier {
             style: TextStyle(
                 shadows: [BoxShadow(color: Colors.black, blurRadius: 1)],
                 fontWeight: FontWeight.w600,
-                color: Colors.black,
+                color: Colors.white,
                 fontSize: 36.0),
             children: <TextSpan>[
               TextSpan(
@@ -232,11 +232,11 @@ class MiddleHelpers extends ChangeNotifier {
                       child: Container(
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.all(Radius.circular(40.0)),
-                          color: Colors.white,
+                          color: Colors.white.withOpacity(0.8),
                           boxShadow: [
                             BoxShadow(
-                                color: Colors.grey.shade500,
-                                blurRadius: 5,
+                                color: Colors.redAccent,
+                                blurRadius: 2,
                                 spreadRadius: 3)
                           ],
                         ),

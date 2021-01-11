@@ -33,6 +33,7 @@ class MyApp extends StatelessWidget {
         title: 'Pizzato',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
+          canvasColor: Colors.transparent,
           fontFamily: 'Figno',
           primarySwatch: Colors.red,
           primaryColor: Colors.redAccent,

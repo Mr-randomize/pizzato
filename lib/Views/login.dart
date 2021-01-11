@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:pizzato/Providers/authentication.dart';
 import 'package:pizzato/Views/home_screen.dart';
@@ -16,62 +17,145 @@ class Login extends StatelessWidget {
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
         child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+          child: Stack(
             children: [
-              RichText(
-                text: TextSpan(
-                    text: 'PIZ',
-                    style: TextStyle(
-                      fontSize: 56.0,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black,
-                    ),
-                    children: <TextSpan>[
-                      TextSpan(
-                        text: 'Z',
+              Container(
+                height: MediaQuery.of(context).size.height,
+                width: MediaQuery.of(context).size.width,
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      stops: [
+                        0.2,
+                        0.54,
+                        0.6,
+                        0.9,
+                      ],
+                      colors: [
+                        Color(0xFF200B4B),
+                        Color(0xFF201F22),
+                        Color(0xFF1A1031),
+                        Color(0xFF19181F),
+                      ]),
+                ),
+              ),
+              Container(
+                height: 500.0,
+                width: MediaQuery.of(context).size.width,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage('images/sign.png'),
+                  ),
+                ),
+              ),
+              Positioned(
+                top: 420.0,
+                left: 10.0,
+                child: Container(
+                  height: 200.0,
+                  width: 200.0,
+                  child: RichText(
+                    text: TextSpan(
+                        text: 'Pizzato ',
                         style: TextStyle(
-                          fontSize: 56.0,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.red,
+                            color: Colors.greenAccent,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 46.0),
+                        children: <TextSpan>[
+                          TextSpan(
+                            text: 'At Your ',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 40.0),
+                          ),
+                          TextSpan(
+                            text: 'Service',
+                            style: TextStyle(
+                                color: Colors.redAccent,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 40.0),
+                          ),
+                        ]),
+                  ),
+                ),
+              ),
+              Positioned(
+                top: 620.0,
+                child: Container(
+                  width: 400.0,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          loginSheet(context);
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(25.0),
+                              border: Border.all(color: Colors.white)),
+                          width: 100.0,
+                          height: 50.0,
+                          child: Center(
+                            child: Text(
+                              'Login',
+                              style: TextStyle(
+                                  color: Colors.lightBlueAccent,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 20.0),
+                            ),
+                          ),
                         ),
                       ),
-                      TextSpan(
-                        text: 'ATO',
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 56.0,
+                      GestureDetector(
+                        onTap: () {
+                          signUpSheet(context);
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(25.0),
+                              border: Border.all(color: Colors.white)),
+                          width: 100.0,
+                          height: 50.0,
+                          child: Center(
+                            child: Text(
+                              'SignUp',
+                              style: TextStyle(
+                                  color: Colors.redAccent,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 20.0),
+                            ),
+                          ),
                         ),
                       )
-                    ]),
+                    ],
+                  ),
+                ),
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  MaterialButton(
-                    color: Colors.black12,
-                    onPressed: () {
-                      loginSheet(context);
-                    },
-                    child: Text(
-                      'Login',
-                      style: TextStyle(
-                          color: Colors.white, fontWeight: FontWeight.bold),
-                    ),
+              Positioned(
+                top: 720.0,
+                left: 20.0,
+                right: 20.0,
+                child: Container(
+                  width: 400.0,
+                  constraints: BoxConstraints(maxHeight: 200.0),
+                  child: Column(
+                    children: [
+                      Text(
+                        "By continuing you agree Pizzato's Terms of ",
+                        style: TextStyle(
+                            color: Colors.grey.shade600, fontSize: 12.0),
+                      ),
+                      Text(
+                        "Services & Privacy Policy",
+                        style: TextStyle(
+                            color: Colors.grey.shade600, fontSize: 12.0),
+                      )
+                    ],
                   ),
-                  MaterialButton(
-                    color: Colors.black12,
-                    onPressed: () {
-                      signUpSheet(context);
-                    },
-                    child: Text(
-                      'SignUp',
-                      style: TextStyle(
-                          color: Colors.white, fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                ],
+                ),
               )
             ],
           ),
@@ -87,7 +171,9 @@ class Login extends StatelessWidget {
           return Container(
             height: 400.0,
             width: 400.0,
-            decoration: BoxDecoration(color: Colors.blueGrey.shade700),
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(25.0),
+                color: Color(0xDD191531)),
             child: Center(
               child: Column(
                 children: [
@@ -95,10 +181,10 @@ class Login extends StatelessWidget {
                     padding: const EdgeInsets.all(8.0),
                     child: TextField(
                       decoration: InputDecoration(
-                          hintText: 'Enter Email',
+                          hintText: 'Enter Email...',
                           hintStyle: TextStyle(
-                            color: Colors.white,
-                          )),
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold)),
                       controller: emailController,
                       style: TextStyle(
                         color: Colors.white,
@@ -110,10 +196,10 @@ class Login extends StatelessWidget {
                     child: TextField(
                       obscureText: true,
                       decoration: InputDecoration(
-                          hintText: 'Enter Password',
+                          hintText: 'Enter Password...',
                           hintStyle: TextStyle(
-                            color: Colors.white,
-                          )),
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold)),
                       controller: passwordController,
                       style: TextStyle(
                         color: Colors.white,
@@ -122,10 +208,10 @@ class Login extends StatelessWidget {
                   ),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: MaterialButton(
-                        color: Colors.lightGreenAccent,
-                        child: Text('SignIn',
-                            style: TextStyle(color: Colors.white)),
+                    child: FloatingActionButton(
+                        backgroundColor: Colors.lightBlueAccent,
+                        child:
+                            Icon(FontAwesomeIcons.check, color: Colors.white),
                         onPressed: () =>
                             Provider.of<Authentication>(context, listen: false)
                                 .loginIntoAccount(emailController.text,
@@ -171,7 +257,9 @@ class Login extends StatelessWidget {
           return Container(
             height: 400.0,
             width: 400.0,
-            decoration: BoxDecoration(color: Colors.blueGrey.shade700),
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(25.0),
+                color: Color(0xDD191531)),
             child: Center(
               child: Column(
                 children: [
@@ -179,10 +267,10 @@ class Login extends StatelessWidget {
                     padding: const EdgeInsets.all(8.0),
                     child: TextField(
                       decoration: InputDecoration(
-                          hintText: 'Enter Email',
+                          hintText: 'Enter Email...',
                           hintStyle: TextStyle(
-                            color: Colors.white,
-                          )),
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold)),
                       controller: emailController,
                       style: TextStyle(
                         color: Colors.white,
@@ -194,10 +282,10 @@ class Login extends StatelessWidget {
                     child: TextField(
                       obscureText: true,
                       decoration: InputDecoration(
-                          hintText: 'Enter Password',
+                          hintText: 'Enter Password...',
                           hintStyle: TextStyle(
-                            color: Colors.white,
-                          )),
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold)),
                       controller: passwordController,
                       style: TextStyle(
                         color: Colors.white,
@@ -206,10 +294,10 @@ class Login extends StatelessWidget {
                   ),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: MaterialButton(
-                        color: Colors.lightGreenAccent,
-                        child: Text('SignUp',
-                            style: TextStyle(color: Colors.white)),
+                    child: FloatingActionButton(
+                        backgroundColor: Colors.lightBlueAccent,
+                        child:
+                            Icon(FontAwesomeIcons.check, color: Colors.white),
                         onPressed: () =>
                             Provider.of<Authentication>(context, listen: false)
                                 .createNewAccount(emailController.text,

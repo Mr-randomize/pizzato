@@ -40,7 +40,7 @@ class GenerateMaps extends ChangeNotifier {
 
   Widget fetchMaps() {
     return GoogleMap(
-      mapType: MapType.hybrid,
+      mapType: MapType.normal,
       myLocationEnabled: true,
       myLocationButtonEnabled: true,
       onTap: (loc) async {

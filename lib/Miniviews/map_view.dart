@@ -32,7 +32,7 @@ class _MapsState extends State<Maps> {
             child: IconButton(
               icon: Icon(
                 Icons.arrow_back_ios_outlined,
-                color: Colors.white,
+                color: Colors.black,
               ),
               onPressed: () {
                 Navigator.pushReplacement(

@@ -9,6 +9,7 @@ import 'package:pizzato/Providers/calculations.dart';
 import 'package:pizzato/Services/manage_data.dart';
 import 'package:pizzato/Services/maps.dart';
 import 'package:pizzato/Views/home_screen.dart';
+import 'package:pizzato/Views/splash_screen.dart';
 import 'package:provider/provider.dart';
 
 class MyCart extends StatefulWidget {
@@ -374,6 +375,9 @@ class _MyCartState extends State<MyCart> {
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         GestureDetector(
+          onTap: () {
+            print(userUid);
+          },
           child: Container(
             width: 200.0,
             height: 50.0,

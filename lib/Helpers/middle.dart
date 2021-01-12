@@ -157,7 +157,7 @@ class MiddleHelpers extends ChangeNotifier {
                                       child: Row(
                                         children: [
                                           Icon(
-                                            FontAwesomeIcons.dollarSign,
+                                            FontAwesomeIcons.rupeeSign,
                                             size: 12,
                                           ),
                                           Text(
@@ -279,7 +279,7 @@ class MiddleHelpers extends ChangeNotifier {
                                   Row(
                                     children: [
                                       Icon(
-                                        FontAwesomeIcons.dollarSign,
+                                        FontAwesomeIcons.rupeeSign,
                                         size: 16.0,
                                       ),
                                       Text(

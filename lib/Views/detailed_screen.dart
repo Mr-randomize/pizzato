@@ -142,7 +142,7 @@ class _DetailedScreenState extends State<DetailedScreen> {
             Row(
               children: [
                 Icon(
-                  FontAwesomeIcons.dollarSign,
+                  FontAwesomeIcons.rupeeSign,
                   size: 20.0,
                   color: Colors.cyan,
                 ),

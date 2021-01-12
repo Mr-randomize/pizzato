@@ -58,7 +58,7 @@ class GenerateMaps extends ChangeNotifier {
       },
       markers: Set<Marker>.of(markers.values),
       initialCameraPosition:
-          CameraPosition(target: LatLng(21.000, 45.000), zoom: 18.0),
+          CameraPosition(target: LatLng(37.4221, -122.0841), zoom: 18.0),
       onMapCreated: (GoogleMapController mapController) {
         googleMapController = mapController;
         notifyListeners();

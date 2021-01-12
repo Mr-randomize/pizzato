@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Authentication with ChangeNotifier {
-  String uid;
   dynamic errorMessage = '';
-
   dynamic get getErrorMessage => errorMessage;
 
+  String uid, userEmail;
   String get getUid => uid;
+  String get getUserEmail => userEmail;
 
   final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
 
@@ -22,7 +22,9 @@ class Authentication with ChangeNotifier {
           .signInWithEmailAndPassword(email: email, password: password);
       User user = userCredential.user;
       uid = user.uid;
+      userEmail = user.email;
       prefs.setString('uid', uid);
+      prefs.setString('userEmail', userEmail);
       notifyListeners();
     } catch (e) {
       switch (e.code) {

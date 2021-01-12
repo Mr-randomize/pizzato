@@ -63,6 +63,8 @@ flutter:
     - images/payment.png
     - images/sign.png
     - images/space.png
+    - images/adminlogin.png
+    - images/deciderbg.png
 
 
   # An image asset can refer to one or more resolution-specific "variants", see
@@ -82,7 +84,10 @@ flutter:
         - asset: fonts/Figno-Regular.otf
     - family: Kanetin
       fonts:
-        - asset: fonts/Kanetin.otf
+        - asset: fonts/Kanetin.ttf
+    - family: Monteserat
+      fonts:
+        - asset: fonts/monteserat.ttf
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

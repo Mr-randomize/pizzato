@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:pizzato/Services/maps.dart';
 import 'package:provider/provider.dart';
+import 'package:razorpay_flutter/razorpay_flutter.dart';
 
 class PaymentHelper with ChangeNotifier {
   TimeOfDay deliveryTiming = TimeOfDay.now();
+  bool showCheckOutButton = false;
+
+  bool get getShowCheckOutButton => showCheckOutButton;
 
   Future selectTime(BuildContext context) async {
     final selectedTime =
@@ -13,6 +17,11 @@ class PaymentHelper with ChangeNotifier {
       print(deliveryTiming.format(context));
       notifyListeners();
     }
+  }
+
+  showCheckOutButtonMethod() {
+    showCheckOutButton = true;
+    notifyListeners();
   }
 
   selectLocation(BuildContext context) {
@@ -54,6 +63,36 @@ class PaymentHelper with ChangeNotifier {
                   ),
                 )
               ],
+            ),
+          );
+        });
+  }
+
+  handlePaymentSuccess(
+      BuildContext context, PaymentSuccessResponse paymentSuccessResponse) {
+    return showResponse(context, paymentSuccessResponse.paymentId);
+  }
+
+  handleExternalWallet(
+      BuildContext context, ExternalWalletResponse externalWalletResponse) {
+    return showResponse(context, externalWalletResponse.walletName);
+  }
+
+  handlePaymentError(
+      BuildContext context, PaymentFailureResponse paymentFailureResponse) {
+    return showResponse(context, paymentFailureResponse.message);
+  }
+
+  showResponse(BuildContext context, String response) {
+    return showModalBottomSheet(
+        context: context,
+        builder: (context) {
+          return Container(
+            height: 100.0,
+            width: 400.0,
+            child: Text(
+              'The response is $response',
+              style: TextStyle(),
             ),
           );
         });

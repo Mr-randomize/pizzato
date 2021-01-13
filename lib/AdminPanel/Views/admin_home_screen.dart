@@ -187,13 +187,26 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
   }
 
   Widget floatingActionButton(BuildContext context) {
-    return FloatingActionButton(
-      child: Icon(
-        FontAwesomeIcons.check,
-        color: Colors.white,
-      ),
-      onPressed: () {},
-      backgroundColor: Colors.deepPurple,
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        FloatingActionButton(
+          child: Icon(
+            FontAwesomeIcons.check,
+            color: Colors.white,
+          ),
+          onPressed: () {},
+          backgroundColor: Colors.greenAccent,
+        ),
+        FloatingActionButton(
+          child: Icon(
+            Icons.cancel_outlined,
+            color: Colors.white,
+          ),
+          onPressed: () {},
+          backgroundColor: Colors.redAccent,
+        ),
+      ],
     );
   }
 }

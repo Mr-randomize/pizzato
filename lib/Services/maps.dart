@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:geocoder/geocoder.dart' as geoCo;
 import 'package:geolocator/geolocator.dart';
@@ -5,15 +6,22 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class GenerateMaps extends ChangeNotifier {
   Position position;
+
   Position get getPosition => position;
 
   String finalAddress = 'Searching address...';
+
   String get getFinalAddress => finalAddress;
 
   GoogleMapController googleMapController;
   Map<MarkerId, Marker> markers = <MarkerId, Marker>{};
+  GeoPoint geoPoint;
+
+  GeoPoint get getGeoPoint => geoPoint;
   String countryName, mainAddress = 'Mock address';
+
   String get getCountryName => countryName;
+
   String get getMainAddress => mainAddress;
 
   Future getCurrentLocation() async {
@@ -50,6 +58,7 @@ class GenerateMaps extends ChangeNotifier {
             await geoCo.Geocoder.local.findAddressesFromCoordinates(cords);
         countryName = address.first.countryName;
         mainAddress = address.first.addressLine;
+        geoPoint = GeoPoint(loc.latitude, loc.longitude);
         notifyListeners();
         markers == null
             ? getMarkers(loc.latitude, loc.longitude)

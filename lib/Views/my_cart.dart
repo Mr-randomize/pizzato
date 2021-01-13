@@ -169,7 +169,7 @@ class _MyCartState extends State<MyCart> {
 
   Widget cartData() {
     return SizedBox(
-      height: 250.0,
+      height: 240.0,
       child: StreamBuilder<QuerySnapshot>(
           stream: FirebaseFirestore.instance.collection('myOrders').snapshots(),
           builder: (context, snapshot) {
@@ -388,9 +388,12 @@ class _MyCartState extends State<MyCart> {
                               Provider.of<PaymentHelper>(context, listen: false)
                                   .deliveryTiming
                                   .format(context),
+                          'address':
+                              Provider.of<GenerateMaps>(context, listen: false)
+                                  .getMainAddress,
                           'location':
                               Provider.of<GenerateMaps>(context, listen: false)
-                                  .getMainAddress
+                                  .getGeoPoint,
                         });
                       })
               ],

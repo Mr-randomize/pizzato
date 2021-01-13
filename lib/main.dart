@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:pizzato/AdminPanel/Services/admin_detail_helper.dart';
 import 'package:pizzato/Helpers/footer.dart';
 import 'package:pizzato/Helpers/headers.dart';
 import 'package:pizzato/Helpers/middle.dart';
@@ -30,13 +31,14 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (ctx) => GenerateMaps()),
         ChangeNotifierProvider(create: (ctx) => Calculations()),
         ChangeNotifierProvider(create: (ctx) => PaymentHelper()),
+        ChangeNotifierProvider(create: (ctx) => AdminDetailHelper()),
       ],
       child: MaterialApp(
         title: 'Pizzato',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           canvasColor: Colors.transparent,
-          fontFamily: 'Figno',
+          fontFamily: 'Monteserat',
           primarySwatch: Colors.red,
           primaryColor: Colors.redAccent,
           visualDensity: VisualDensity.adaptivePlatformDensity,

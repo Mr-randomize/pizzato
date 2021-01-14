@@ -2,59 +2,14 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:pizzato/AdminPanel/Services/delivery_options.dart';
+import 'package:pizzato/AdminPanel/Services/maps_helpers.dart';
+import 'package:provider/provider.dart';
 
-class AdminDetailHelper with ChangeNotifier {
-  GoogleMapController googleMapController;
-  Map<MarkerId, Marker> markers = <MarkerId, Marker>{};
-
-  initMarker(coll, collId) {
-    var docMarkerId = collId;
-    final MarkerId markerId = MarkerId(docMarkerId);
-    final Marker marker = Marker(
-      markerId: markerId,
-      icon: BitmapDescriptor.defaultMarker,
-      position: LatLng(coll['location'].latitude, coll['location'].longitude),
-      infoWindow: InfoWindow(title: 'Order', snippet: coll['address']),
-    );
-    markers[markerId] = marker;
-  }
-
-  getMarkerData() async {
-    FirebaseFirestore.instance
-        .collection('adminCollections')
-        .get()
-        .then((docData) {
-      if (docData.docs.isNotEmpty) {
-        for (int i = 0; i < docData.docs.length; i++) {
-          initMarker(docData.docs[i].data(), docData.docs[i].id);
-        }
-      }
-    });
-  }
-
-  showGoogleMap(BuildContext context, DocumentSnapshot documentSnapshot) {
-    return GoogleMap(
-      mapType: MapType.normal,
-      myLocationButtonEnabled: true,
-      myLocationEnabled: true,
-      compassEnabled: true,
-      initialCameraPosition: CameraPosition(
-        zoom: 15.0,
-        target: LatLng(
-          documentSnapshot.data()['location'].latitude,
-          documentSnapshot.data()['location'].longitude,
-        ),
-      ),
-      onMapCreated: (GoogleMapController mapController) {
-        googleMapController = mapController;
-        notifyListeners();
-      },
-    );
-  }
-
+class AdminDetailsHelper with ChangeNotifier {
   detailSheet(BuildContext context, DocumentSnapshot documentSnapshot) {
-    getMarkerData();
+    Provider.of<MapsHelpers>(context, listen: false)
+        .getMarkerData('adminCollections');
     return showModalBottomSheet(
         isScrollControlled: true,
         context: context,
@@ -124,7 +79,8 @@ class AdminDetailHelper with ChangeNotifier {
                   child: SizedBox(
                     height: 400.0,
                     width: 400.0,
-                    child: showGoogleMap(context, documentSnapshot),
+                    child: Provider.of<MapsHelpers>(context, listen: false)
+                        .showGoogleMap(context, documentSnapshot),
                   ),
                 ),
                 Padding(
@@ -254,7 +210,11 @@ class AdminDetailHelper with ChangeNotifier {
                       children: [
                         FlatButton.icon(
                           color: Colors.red,
-                          onPressed: () {},
+                          onPressed: () {
+                            Provider.of<DeliveryOptions>(context, listen: false)
+                                .manageOrders(context, documentSnapshot,
+                                    'canceledOrders', 'Delivery Canceled');
+                          },
                           icon: Icon(FontAwesomeIcons.eye, color: Colors.white),
                           label: Text(
                             'Skip',
@@ -267,7 +227,11 @@ class AdminDetailHelper with ChangeNotifier {
                         ),
                         FlatButton.icon(
                           color: Colors.lightBlueAccent,
-                          onPressed: () {},
+                          onPressed: () {
+                            Provider.of<DeliveryOptions>(context, listen: false)
+                                .manageOrders(context, documentSnapshot,
+                                    'deliveredOrders', 'Delivery Accepted');
+                          },
                           icon: Icon(FontAwesomeIcons.delicious,
                               color: Colors.white),
                           label: Text(

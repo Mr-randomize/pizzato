@@ -1,7 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:pizzato/AdminPanel/Services/admin_detail_helper.dart';
+import 'file:///C:/Users/ivi.berberi/AndroidStudioProjects/pizzato/lib/AdminPanel/Views/admin_details.dart';
 import 'package:pizzato/AdminPanel/Services/delivery_options.dart';
+import 'package:pizzato/AdminPanel/Services/maps_helpers.dart';
 import 'package:pizzato/Helpers/footer.dart';
 import 'package:pizzato/Helpers/headers.dart';
 import 'package:pizzato/Helpers/middle.dart';
@@ -32,8 +33,9 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (ctx) => GenerateMaps()),
         ChangeNotifierProvider(create: (ctx) => Calculations()),
         ChangeNotifierProvider(create: (ctx) => PaymentHelper()),
-        ChangeNotifierProvider(create: (ctx) => AdminDetailHelper()),
+        ChangeNotifierProvider(create: (ctx) => AdminDetailsHelper()),
         ChangeNotifierProvider(create: (ctx) => DeliveryOptions()),
+        ChangeNotifierProvider(create: (ctx) => MapsHelpers()),
       ],
       child: MaterialApp(
         title: 'Pizzato',

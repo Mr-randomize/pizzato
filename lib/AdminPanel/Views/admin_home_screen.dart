@@ -3,7 +3,8 @@ import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:pizzato/AdminPanel/Services/admin_detail_helper.dart';
+import 'package:pizzato/AdminPanel/Services/delivery_options.dart';
+import 'file:///C:/Users/ivi.berberi/AndroidStudioProjects/pizzato/lib/AdminPanel/Views/admin_details.dart';
 import 'package:pizzato/AdminPanel/Views/login_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -143,7 +144,7 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
                       child: Container(
                         decoration: BoxDecoration(color: Colors.deepPurple),
                         child: ListTile(
-                          onTap: () => Provider.of<AdminDetailHelper>(context,
+                          onTap: () => Provider.of<AdminDetailsHelper>(context,
                                   listen: false)
                               .detailSheet(context, documentSnapshot),
                           trailing: IconButton(
@@ -195,7 +196,10 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
             FontAwesomeIcons.check,
             color: Colors.white,
           ),
-          onPressed: () {},
+          onPressed: () {
+            Provider.of<DeliveryOptions>(context, listen: false)
+                .showOrders(context, 'deliveredOrders');
+          },
           backgroundColor: Colors.greenAccent,
         ),
         FloatingActionButton(
@@ -203,7 +207,10 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
             Icons.cancel_outlined,
             color: Colors.white,
           ),
-          onPressed: () {},
+          onPressed: () {
+            Provider.of<DeliveryOptions>(context, listen: false)
+                .showOrders(context, 'cancelledOrders');
+          },
           backgroundColor: Colors.redAccent,
         ),
       ],
